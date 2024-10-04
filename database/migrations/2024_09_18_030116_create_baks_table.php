@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string(column: 'periode');
             $table->string(column: 'file_name');
-            $table->string(column: 'status');
+            $table->string(column: 'file_path');
+            $table->string(column: 'status')->default(value: 'pending');
+            $table->string(column: 'nama_pihak_ke2')->nullable()->default(value: null);
             $table->timestamps();
         });
     }
