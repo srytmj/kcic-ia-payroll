@@ -126,18 +126,21 @@ class BakController extends Controller
     
     public function deleteSelected(Request $request)
     {
-        $ids = $request->input('ids'); // Mendapatkan ID yang dipilih
-        $files = $request->input('files'); // Mendapatkan file path yang dipilih
-
-        // Loop melalui file dan hapus
-        foreach ($files as $file) {
-            Storage::delete($file); // Menghapus file dari storage
+        $ids = $request->input('ids');
+    
+        try {
+            // Hapus data berdasarkan ID yang dipilih
+            Bak::whereIn('id', $ids)->delete();
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Data berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal menghapus data: ' . $e->getMessage()
+            ]);
         }
-
-        // Menghapus data dari database
-        Bak::destroy($ids);
-
-        return response()->json(['success' => 'Data berhasil dihapus']);
     }
-
 }

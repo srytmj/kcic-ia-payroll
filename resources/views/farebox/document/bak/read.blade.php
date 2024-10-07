@@ -118,6 +118,30 @@
         </div>
     </div>
 
+    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{{ route('bak.destroy', $item->id) }}" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Anda akan menghapus <strong><span id="selected-count"></span></strong> data berikut:</p>
+                        <ul id="selected-items-list"></ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        <button type="button" class="btn btn-danger" id="confirm-delete">Hapus</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).on('click', '.view-pdf-button', function() {
             var fileUrl = $(this).data('file');
@@ -158,7 +182,7 @@
                         });
                     }
                 });
-                updateSelectedList(); // Update the selected list below the table
+                updateSelectedList();
             });
 
             // Handle individual checkbox click
@@ -173,13 +197,7 @@
                         return item !== id;
                     });
                 }
-                updateSelectedList(); // Update the selected list below the table
-            });
-
-            // Handle pagination event (if using a pagination plugin, handle its event here)
-            $('#userAccessMenuTable').on('draw.dt', function() {
-                maintainCheckedState();
-                updateSelectedList(); // Maintain the selected list when pagination changes
+                updateSelectedList();
             });
 
             // Show delete modal and populate data
@@ -192,10 +210,12 @@
                         itemListHtml += '<li>' + rowText + '</li>';
                     });
                     $('#deleteModal').modal('show');
+                } else {
+                    alert('Tidak ada data yang dipilih.');
                 }
             });
 
-            // Confirm delete action
+            // Confirm delete action using AJAX
             $('#confirm-delete').on('click', function() {
                 $.ajax({
                     url: '{{ route('delete.selected') }}', // Ganti route sesuai kebutuhan
@@ -211,13 +231,24 @@
                             });
                             selectedIds = [];
                             updateSelectedList(); // Clear the selected list after deletion
+
+                            // Close modal and remove backdrop
                             $('#deleteModal').modal('hide');
+                            $('.modal-backdrop').remove(); // Menghapus backdrop modal
+
+                            // Show success alert
+                            alert('Data telah dihapus.');
+                        } else {
+                            alert('Terjadi kesalahan, tidak dapat menghapus data.');
                         }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        alert('Error: ' + error);
                     }
                 });
             });
 
-            // Function to maintain checked state across pagination
             function maintainCheckedState() {
                 $('.select-item').each(function() {
                     var id = $(this).data('id');
@@ -231,5 +262,6 @@
         });
     </script>
 
-    @include('farebox.document.' . $tablename . '.delete')
+
+    {{-- @include('farebox.document.' . $tablename . '.delete') --}}
 @endsection

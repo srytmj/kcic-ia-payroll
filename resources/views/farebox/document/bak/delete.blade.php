@@ -18,3 +18,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    $.ajax({
+        url: '{{ route('delete.selected') }}',
+        type: 'DELETE',
+        data: {
+            _token: '{{ csrf_token() }}'
+        },
+        success: function(response) {
+            alert(response.message);
+        },
+        error: function(xhr) {
+            alert('Gagal menghapus data');
+        }
+    });
+</script>
