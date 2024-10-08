@@ -44,7 +44,6 @@
                                 <table id="userAccessMenuTable" class="table table-striped table-bordered nowrap">
                                     <thead>
                                         <tr>
-                                            <th style="width: 2%"><input type="checkbox" id="select-all"></th>
                                             <th style="width: 3%;">Id</th>
                                             <th style="width: 5%;">Periode</th>
                                             <th style="width: 70%;">BAK</th>
@@ -54,25 +53,50 @@
                                     <tbody>
                                         @foreach ($datas as $item)
                                             <tr class="datarow" data-id="{{ $item->id }}">
-                                                <td><input type="checkbox" class="select-item"
-                                                        data-id="{{ $item->id }}"></td>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->periode }}</td>
                                                 <td>{{ $item->file_name }}</td>
                                                 <td>
-                                                    <!-- View PDF Button -->
-                                                    <button type="button" class="btn btn-info view-pdf-button"
-                                                        data-toggle="modal" data-target="#pdfModal"
-                                                        data-file="{{ asset('storage/' . $item->file_path) }}">
-                                                        Lihat PDF
-                                                    </button>
-
-                                                    <!-- Edit Button -->
-                                                    <button type="button" class="btn btn-warning edit-button"
-                                                        data-toggle="modal" data-target="#editModal"
-                                                        data-table="{{ $tablename }}" data-id="{{ $item->id }}">
-                                                        Edit
-                                                    </button>
+                                                    <div class="btn-group dropstart">
+                                                        <button type="button" class="btn btn-light-secondary">Split dropup</button> 
+ 
+                                                        <button type="button" class="btn btn-light-secondary dropdown-toggle dropdown-toggle-split view-pdf-button" data-bs-toggle="dropdown" data-toggle="modal" data-target="#pdfModal" data-file="{{ asset('storage/' . $item->file_path) }}" aria-expanded="false"> Lihat PDF
+                                                            <span class="visually-hidden">Toggle Dropdown</span>
+                                                        </button>
+                                                            type="button" class="btn btn-info view-pdf-button"
+                                                           >
+                                                            Lihat PDF
+                                                        <div class="dropdown-menu" style="">
+                                                            <a class="dropdown-item" href="#!" disabled>Aksi</a>
+                                                            <a class="dropdown-item edit-button" data-toggle="modal"
+                                                                data-target="#editModal" data-table="{{ $tablename }}"
+                                                                data-id="{{ $item->id }}">
+                                                                Edit
+                                                            </a>
+                                                            <a class="dropdown-item delete-button" data-toggle="modal"
+                                                                data-target="#deletemodal" data-table="{{ $tablename }}"
+                                                                data-id="{{ $item->id }}">
+                                                                Hapus
+                                                            </a>
+                                                    </div>
+                                                    
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                                            id="dropdownMenuButton{{ $item->id }}"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                            Aksi
+                                                        </button>
+                                                        <div class="dropdown-menu"
+                                                            aria-labelledby="dropdownMenuButton{{ $item->id }}">
+                                                            <a class="dropdown-item view-pdf-button" data-toggle="modal"
+                                                                data-target="#pdfModal"
+                                                                data-file="{{ asset('storage/' . $item->file_path) }}">
+                                                                Lihat PDF
+                                                            </a>
+                                                            
+                                                        </div>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -118,29 +142,6 @@
         </div>
     </div>
 
-    <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form action="{{ route('bak.destroy', $item->id) }}" method="POST">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus Data</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Anda akan menghapus <strong><span id="selected-count"></span></strong> data berikut:</p>
-                        <ul id="selected-items-list"></ul>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-danger" id="confirm-delete">Hapus</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 
     <script>
         $(document).on('click', '.view-pdf-button', function() {
@@ -149,119 +150,5 @@
         });
     </script>
 
-    <script>
-        $(document).ready(function() {
-            var selectedIds = [];
-
-            // Function to update the list of selected items below the table
-            function updateSelectedList() {
-                var itemListHtml = '';
-                if (selectedIds.length > 0) {
-                    selectedIds.forEach(function(id) {
-                        var rowText = $('tr[data-id="' + id + '"]').find('td').eq(2).text();
-                        itemListHtml += '<li class="list-group-item">' + rowText + '</li>';
-                    });
-                } else {
-                    itemListHtml = '<li class="list-group-item">Tidak ada data yang dipilih</li>';
-                }
-                $('#selected-items-list').html(itemListHtml);
-            }
-
-            // Handle select all checkbox
-            $('#select-all').on('click', function() {
-                var isChecked = $(this).is(':checked');
-                $('.select-item').prop('checked', isChecked);
-
-                $('.select-item').each(function() {
-                    var id = $(this).data('id');
-                    if (isChecked && !selectedIds.includes(id)) {
-                        selectedIds.push(id);
-                    } else if (!isChecked) {
-                        selectedIds = selectedIds.filter(function(item) {
-                            return item !== id;
-                        });
-                    }
-                });
-                updateSelectedList();
-            });
-
-            // Handle individual checkbox click
-            $(document).on('click', '.select-item', function() {
-                var id = $(this).data('id');
-                if ($(this).is(':checked')) {
-                    if (!selectedIds.includes(id)) {
-                        selectedIds.push(id);
-                    }
-                } else {
-                    selectedIds = selectedIds.filter(function(item) {
-                        return item !== id;
-                    });
-                }
-                updateSelectedList();
-            });
-
-            // Show delete modal and populate data
-            $('.btn-danger').on('click', function() {
-                if (selectedIds.length > 0) {
-                    $('#selected-count').text(selectedIds.length);
-                    var itemListHtml = '';
-                    selectedIds.forEach(function(id) {
-                        var rowText = $('tr[data-id="' + id + '"]').find('td').eq(2).text();
-                        itemListHtml += '<li>' + rowText + '</li>';
-                    });
-                    $('#deleteModal').modal('show');
-                } else {
-                    alert('Tidak ada data yang dipilih.');
-                }
-            });
-
-            // Confirm delete action using AJAX
-            $('#confirm-delete').on('click', function() {
-                $.ajax({
-                    url: '{{ route('delete.selected') }}', // Ganti route sesuai kebutuhan
-                    method: 'DELETE',
-                    data: {
-                        ids: selectedIds,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            selectedIds.forEach(function(id) {
-                                $('tr[data-id="' + id + '"]').remove();
-                            });
-                            selectedIds = [];
-                            updateSelectedList(); // Clear the selected list after deletion
-
-                            // Close modal and remove backdrop
-                            $('#deleteModal').modal('hide');
-                            $('.modal-backdrop').remove(); // Menghapus backdrop modal
-
-                            // Show success alert
-                            alert('Data telah dihapus.');
-                        } else {
-                            alert('Terjadi kesalahan, tidak dapat menghapus data.');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error:', error);
-                        alert('Error: ' + error);
-                    }
-                });
-            });
-
-            function maintainCheckedState() {
-                $('.select-item').each(function() {
-                    var id = $(this).data('id');
-                    if (selectedIds.includes(id)) {
-                        $(this).prop('checked', true);
-                    } else {
-                        $(this).prop('checked', false);
-                    }
-                });
-            }
-        });
-    </script>
-
-
-    {{-- @include('farebox.document.' . $tablename . '.delete') --}}
+    @include('farebox.document.' . $tablename . '.delete')
 @endsection

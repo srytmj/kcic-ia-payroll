@@ -76,7 +76,8 @@ class BakController extends Controller
         }
 
         // Response sukses
-        return response()->json(['message' => 'Files uploaded and saved to database successfully!'], 200);
+        // return response()->json(['message' => 'Files uploaded and saved to database successfully!'], 200);
+        return redirect()->route('bak.index');
     }
 
     /**

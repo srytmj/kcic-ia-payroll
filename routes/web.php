@@ -39,7 +39,7 @@ Route::prefix('farebox')->group( function () {
     // document
     Route::prefix('document')->group(function () {
         Route::resource('bak', BakController::class);
-        Route::post('/farebox/document/bak', [BakController::class, 'store'])->name('document.store');
+        // Route::post('/farebox/document/bak', [BakController::class, 'store'])->name('document.store');
         Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
 
         Route::resource('rekeningkoran', RekeningkoranController::class);
