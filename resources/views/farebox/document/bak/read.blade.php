@@ -33,8 +33,7 @@
                         <div class="card-header">
                             <h5>Data {{ ucfirst($tablename) }}</h5>
                             <div class="card-header-right">
-                                <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah
-                                    Data</button>
+                                <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">Tambah Data</button>
                                 <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete
                                     Selected</button>
                             </div>

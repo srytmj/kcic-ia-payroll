@@ -1,6 +1,6 @@
-@extends('layout')
+    @extends('layout')
 
-@section('content')
+    @section('content')
     <!-- [ Main Content ] start -->
     <div class="pcoded-main-container">
         <div class="pcoded-content">

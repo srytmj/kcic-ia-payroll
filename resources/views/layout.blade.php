@@ -28,14 +28,7 @@
 <script src="{{ asset('assets/js/ripple.js') }}"></script>
 <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
 <script src="{{ asset('assets/js/menu-setting.min.js') }}"></script>
-<script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/fixedcolumns/5.0.2/js/dataTables.fixedColumns.js"></script>
-<script src="https://cdn.datatables.net/fixedcolumns/5.0.2/js/fixedColumns.dataTables.js"></script>
-<script src="https://cdn.datatables.net/select/2.1.0/js/dataTables.select.js"></script>
-<script src="https://cdn.datatables.net/select/2.1.0/js/select.dataTables.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/5.0.2/css/fixedColumns.dataTables.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/select/2.1.0/css/select.dataTables.css">
+
 @yield('content')
 
 

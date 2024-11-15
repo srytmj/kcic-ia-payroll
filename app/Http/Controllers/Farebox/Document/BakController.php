@@ -38,17 +38,7 @@ class BakController extends Controller
      */
     public function store(StorebakRequest $request)
     {
-
-        // Validasi input
-        $validator = Validator::make($request->all(), [
-            'periode' => 'required|date_format:Y-m', // Validasi format bulan-tahun
-            'files.*' => 'required|file|mimes:pdf|max:5120', // Hanya terima file PDF maksimal 5MB
-        ]);
-
-        // Jika validasi gagal
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
-        }
+        // The validation is already handled in the StorebakRequest
 
         // Ambil data periode
         $periode = $request->input('periode');
@@ -76,9 +66,9 @@ class BakController extends Controller
         }
 
         // Response sukses
-        // return response()->json(['message' => 'Files uploaded and saved to database successfully!'], 200);
         return redirect()->route('bak.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -124,15 +114,15 @@ class BakController extends Controller
 
         return redirect()->route('bak.index');
     }
-    
+
     public function deleteSelected(Request $request)
     {
         $ids = $request->input('ids');
-    
+
         try {
             // Hapus data berdasarkan ID yang dipilih
             Bak::whereIn('id', $ids)->delete();
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Data berhasil dihapus'

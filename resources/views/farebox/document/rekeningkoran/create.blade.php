@@ -1,22 +1,24 @@
-<!-- Modal HTML -->
-<div class="modal fade" id="createmodal" tabindex="-1" aria-labelledby="createmodalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createmodalLabel">Upload Files</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <!-- Form for uploading files -->
-                <form id="uploadForm" enctype="multipart/form-data">
+<!-- [ upload-collapse ] start -->
+<br>
+<div class="col-sm-12">
+    <div class="card">
+        <div class="collapse" id="collapseUpload">
+            <div class="card-body">
+                <form id="uploadForm" method="POST" enctype="multipart/form-data" class="dropzone">
                     @csrf
-
                     <!-- Periode Input -->
                     <div class="form-group">
                         <label for="periode">Periode (Bulan-Tahun)</label>
                         <input type="month" id="periode" name="periode" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nomor_rekening">Nomor Rekening :</label>
+                        <select class="form-select col-sm-12" name="nomor_rekening" id="nomor_rekening">
+                            <option value="" selected disabled hidden>Pilih Nomor Rekening</option>
+                            <option value="111">111</option>
+                            <option value="222">222</option>
+                        </select>
                     </div>
 
                     <!-- File Upload Area -->
@@ -33,16 +35,27 @@
                     <div id="fileList" class="mt-3"></div>
 
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="uploadBtn">Upload</button>
+
+                <div class="text-center m-t-20">
+                    <button type="button" class="btn btn-primary" id="uploadBtn">Upload Now</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- [ upload-collapse ] end -->
 
 <script>
+    // Get the current date
+    const now = new Date();
+
+    // Format the date to match the input type="month" (YYYY-MM)
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // Pad month to 2 digits
+
+    // Set the value of the input to the current month
+    document.getElementById('periode').value = `${year}-${month}`;
+
     // Handle drag and drop or click for file input
     const dropzone = document.getElementById('dropzone');
     const fileInput = document.getElementById('fileInput');
@@ -101,13 +114,15 @@
     }
 
     // Handle form submission and upload
+    // Handle form submission and upload
     document.getElementById('uploadBtn').addEventListener('click', async () => {
         const formData = new FormData();
         formData.append('periode', document.getElementById('periode').value);
+        formData.append('nomor_rekening', document.getElementById('nomor_rekening').value);
         files.forEach(file => formData.append('files[]', file));
 
         try {
-            const response = await fetch('/farebox/document/bak', { // URL route yang benar
+            const response = await fetch('/farebox/document/rekeningkoran', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -116,14 +131,17 @@
             });
 
             if (response.ok) {
+                const result = await response.json();
                 alert('Files uploaded successfully!');
+
                 // Optionally, close the modal or reset the form
                 files = [];
                 fileList.innerHTML = '';
                 document.getElementById('uploadForm').reset();
                 $('#uploadModal').modal('hide');
             } else {
-                alert('Error uploading files!');
+                const errorData = await response.json();
+                alert('Error uploading files: ' + (errorData.message || 'Unknown error'));
             }
         } catch (error) {
             alert('An error occurred while uploading the files!');
