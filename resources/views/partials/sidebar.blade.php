@@ -1,12 +1,3 @@
-   
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
-        </div>
-    </div>
-    <!-- [ Pre-loader ] End -->
-
     <!-- [ navigation menu ] start -->
     <nav class="pcoded-navbar menu-light ">
         <div class="navbar-wrapper  ">
@@ -14,12 +5,9 @@
 
                 <div class="">
                     <div class="main-menu-header">
-                        <img class="img-radius" src="{{ asset('assets/images/user/avatar-2.jpg') }}"
-                            alt="User-Profile-Image">
-
+                        <img class="img-radius" src="{{asset("assets/images/user/avatar-2.jpg")}}" alt="User-Profile-Image">
                         <div class="user-details">
-                            {{-- <div id="more-details">{{ $users->name }}<i class="fa fa-caret-down"></i></div> --}}
-                            <div id="more-details">Admin<i class="fa fa-caret-down"></i></div>
+                            <div id="more-details">UX Designer <i class="fa fa-caret-down"></i></div>
                         </div>
                     </div>
                     <div class="collapse" id="nav-user-link">
@@ -35,28 +23,28 @@
                     </div>
                 </div>
 
-                <ul class="nav pcoded-inner-navbar">
-                        <li class="nav-item pcoded-hasmenu">
-                            <a class="nav-link">
-                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                <span class="pcoded-mtext">Data</span>
-                            </a>
-                            <ul class="pcoded-submenu">
-                                <li><a href="farebox/data/farebox">Farebox</a></li>
-                            </ul>
-                        </li>
-                        
-                        <li class="nav-item pcoded-hasmenu">
-                            <a class="nav-link">
-                                <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                                <span class="pcoded-mtext">Document</span>
-                            </a>
-                            <ul class="pcoded-submenu">
-                                <li><a href="farebox/document/bak">Bak</a></li>
-                            </ul>
-                        </li>
-                </ul>
+                <ul class="nav pcoded-inner-navbar ">
+                    <li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Master</span></a>
+						<ul class="pcoded-submenu">
+							<li class="pcoded-hasmenu"><a>Data</a>
+								<ul class="pcoded-submenu">
+									<li><a href="layout-static.html">Ticket Sales</a></li>
+									<li><a href="layout-fixed.html">Refund</a></li>
+								</ul>
+							</li>
+                            <li class="pcoded-hasmenu"><a>Document</a>
+								<ul class="pcoded-submenu">
+									<li><a href="{{ route('bak.index') }}">Bak</a></li>
+                                    <li><a href="{{ route('rekeningkoran.index') }}">Rekening Koran</a></li>
+									{{-- <li><a href="{{ route('formrefund.index') }}">Form Refund</a></li> --}}
+								</ul>
+							</li>
+						</ul>
 
+					</li>
+                </ul>
+                
             </div>
         </div>
     </nav>

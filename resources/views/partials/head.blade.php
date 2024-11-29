@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <title>KCIC Internal Audit</title>
+    <title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -17,22 +14,21 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ asset('assets/images/favicon.ico" type="image/x-icon') }}">
+    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
+
+    <!-- data tables css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/dataTables.bootstrap4.min.css') }}">
+    
+    <!-- select2 css -->
+    <link rel="stylesheet" href="{{ asset('assets/css/plugins/select2.min.css') }}">
 
     <!-- vendor css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Include Bootstrap first -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
-    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">   
 
-    {{-- <link rel="stylesheet" href="assets/css/style.css"> --}}
 
-    <!-- Required Js -->
-    <script src="{{ asset('assets/js/vendor-all.min.js')}}"></script>
-    <script src="{{ asset('assets/js/plugins/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('assets/js/ripple.js')}}"></script>
-    <script src="{{ asset('assets/js/pcoded.min.js')}}"></script>
-    <script src="{{ asset('assets/js/menu-setting.min.js')}}"></script>
-    
-    
 </head>

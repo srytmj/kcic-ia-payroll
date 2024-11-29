@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Bak;
+use App\Models\TicketSales;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class BakPolicy
+class TicketSalesPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class BakPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Bak $bak): bool
+    public function view(User $user, TicketSales $ticketSales): bool
     {
         //
     }
@@ -35,7 +35,7 @@ class BakPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Bak $bak): bool
+    public function update(User $user, TicketSales $ticketSales): bool
     {
         //
     }
@@ -43,7 +43,7 @@ class BakPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Bak $bak): bool
+    public function delete(User $user, TicketSales $ticketSales): bool
     {
         //
     }
@@ -51,7 +51,7 @@ class BakPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Bak $bak): bool
+    public function restore(User $user, TicketSales $ticketSales): bool
     {
         //
     }
@@ -59,7 +59,7 @@ class BakPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Bak $bak): bool
+    public function forceDelete(User $user, TicketSales $ticketSales): bool
     {
         //
     }

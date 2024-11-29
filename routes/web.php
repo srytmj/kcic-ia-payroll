@@ -1,9 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Bak;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,32 +18,45 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//farebox
 // data
-use App\Http\Controllers\Farebox\data\FareboxController;
-use App\Http\Controllers\Farebox\data\RefundrombonganController;   
 
 // document
-use App\Http\Controllers\Farebox\Document\BakController;
-use App\Http\Controllers\Farebox\Document\RekeningkoranController;
+use App\Http\Controllers\Document\BakController;
+use App\Http\Controllers\Document\RekeningkoranController;
 
 Route::prefix('farebox')->group( function () {
     // data
     Route::prefix('data')->group(function () {
-        Route::resource('farebox', FareboxController::class);
-        Route::resource('refundrombongan', RefundrombonganController::class);
+        //
     });
 
     
     // document
-    Route::prefix('document')->group(function () {
+    Route::prefix('document')->group(callback: function () {
         Route::resource('bak', BakController::class);
-        // Route::post('/farebox/document/bak', [BakController::class, 'store'])->name('document.store');
-        Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
+        Route::get('/bak/pdf/{id}', function($id) {
+            $dokumen = Bak::findOrFail($id); // Mengambil data berdasarkan ID
+            $filePath = storage_path('app/public/' . $dokumen->file_path); // Lokasi file
+        
+            if (file_exists($filePath)) {
+                return response()->file($filePath); // Kirim file ke browser
+            }
+        
+            abort(404); // Kalau file nggak ada, tampilkan 404
+        });
+        Route::put('/bak/{id}', [BakController::class, 'update'])->name('bak.update');
+
+        
+        Route::get('/bak/{id}/download', [BakController::class, 'download'])->name('bak.download');
 
         Route::resource('rekeningkoran', RekeningkoranController::class);
-    
+        Route::get('/rekeningkoran/pdf/{id}', [RekeningkoranController::class, 'getPdf'])->name('rekeningkoran.pdf');
+        Route::get('/rekeningkoran/{id}/download', [RekeningkoranController::class, 'download'])->name('rekeningkoran.download');
+
+        // Route::post('/farebox/document/bak/store', [BakController::class, 'store'])->name('bak.store');
+        // Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
     });
 });
+
 
 require __DIR__.'/auth.php';
