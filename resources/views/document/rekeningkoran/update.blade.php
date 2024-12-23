@@ -56,7 +56,7 @@
 
             // Fetch current data and populate the form
             $.ajax({
-                url: '/farebox/document/'+ table + '/' + id, // URL untuk fungsi show
+                url: '/document/'+ table + '/' + id, // URL untuk fungsi show
                 method: 'GET',
                 success: function(data) {
                     console.log(data); // Tampilkan respons di console
@@ -69,7 +69,7 @@
                         $('select[name="nomor_rekening').val(data.nomor_rekening); // Set periode (format YYYY-MM)
 
                         // Update form action URL
-                        $('#editform').attr('action', '/farebox/document/rekeningkoran/' + id);
+                        $('#editform').attr('action', '/document/rekeningkoran/' + id);
 
                         // Show the modal
                         $('#editModal').modal('show');

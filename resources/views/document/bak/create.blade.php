@@ -29,6 +29,12 @@
 
                 </form>
 
+                <!-- Progress Bar -->
+                <div id="progressContainer" class="progress mt-3" style="display: none;">
+                    <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" 
+                        style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                </div>
+
                 <div class="text-center m-t-20">
                     <button type="button" class="btn btn-primary" id="uploadBtn">Upload Now</button>
                 </div>
@@ -115,9 +121,22 @@
         displayFileList();
     }
 
+    // Show progress bar and update progress dynamically
+    function showProgressBar() {
+        $('#progressContainer').show();
+        $('#progressBar').css('width', '0%').attr('aria-valuenow', 0).text('0%');
+    }
+
+    function updateProgressBar(percent) {
+        $('#progressBar').css('width', `${percent}%`).attr('aria-valuenow', percent).text(`${percent}%`);
+    }
+
     // Handle form submission
     $('#uploadBtn').on('click', function(e) {
         e.preventDefault();
+
+        // Show progress bar
+        showProgressBar();
 
         // Prepare FormData
         var formData = new FormData();
@@ -130,7 +149,7 @@
             formData.append('files[]', files[i]);
         }
 
-        // Send Ajax request
+        // Send Ajax request with progress event
         $.ajax({
             url: '{{ route('bak.store') }}', // Adjust URL to your route
             method: 'POST',
@@ -140,8 +159,20 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+
+                // Update progress bar
+                xhr.upload.addEventListener('progress', function(event) {
+                    if (event.lengthComputable) {
+                        var percentComplete = Math.round((event.loaded / event.total) * 100);
+                        updateProgressBar(percentComplete);
+                    }
+                }, false);
+
+                return xhr;
+            },
             success: function(response) {
-                // alert(response.message); // Display success message
                 runScriptAndRefresh();
             },
             error: function(xhr) {
@@ -153,7 +184,10 @@
                     }
                 }
                 runScriptAndRefresh();
-                // alert('Error: ' + errorMsg); // Display error message
+            },
+            complete: function() {
+                // Hide progress bar when done
+                $('#progressContainer').hide();
             }
         });
     });

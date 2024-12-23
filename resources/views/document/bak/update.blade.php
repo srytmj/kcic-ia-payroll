@@ -89,7 +89,7 @@
 
             // Fetch current data and populate the form
             $.ajax({
-                url: '/farebox/document/' + table + '/' + id, // URL untuk fungsi show
+                url: '/document/' + table + '/' + id, // URL untuk fungsi show
                 method: 'GET',
                 success: function(data) {
                     if (data) {
@@ -142,7 +142,7 @@
 
             // Send AJAX request for updating
             $.ajax({
-                url: '/farebox/document/bak/' + id, // Pasang id dengan benar di URL
+                url: '/document/bak/' + id, // Pasang id dengan benar di URL
                 method: 'PUT', // Jangan pake GET buat update, pake PUT
                 data: formData, // Kirim form data untuk update
                 success: function(response) {

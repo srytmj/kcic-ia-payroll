@@ -39,7 +39,7 @@
         var table = $('#delete-table').val();
 
         $.ajax({
-            url: '/farebox/document/' + table + '/' + id, // Ensure the URL matches the route definition
+            url: '/document/' + table + '/' + id, // Ensure the URL matches the route definition
             method: 'DELETE',
             data: {
                 _token: '{{ csrf_token() }}'

@@ -29,7 +29,7 @@
 						<ul class="pcoded-submenu">
 							<li class="pcoded-hasmenu"><a>Data</a>
 								<ul class="pcoded-submenu">
-									<li><a href="layout-static.html">Ticket Sales</a></li>
+									<li><a href="{{ route('ticketsales.index') }}">Ticket Sales</a></li>
 									<li><a href="layout-fixed.html">Refund</a></li>
 								</ul>
 							</li>

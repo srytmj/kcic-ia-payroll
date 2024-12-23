@@ -23,40 +23,40 @@ Route::middleware('auth')->group(function () {
 // document
 use App\Http\Controllers\Document\BakController;
 use App\Http\Controllers\Document\RekeningkoranController;
+use App\Http\Controllers\Data\TicketsalesController;
 
-Route::prefix('farebox')->group( function () {
-    // data
-    Route::prefix('data')->group(function () {
-        //
-    });
-
+// data
+Route::prefix('data')->group(function () {
     
-    // document
-    Route::prefix('document')->group(callback: function () {
-        Route::resource('bak', BakController::class);
-        Route::get('/bak/pdf/{id}', function($id) {
-            $dokumen = Bak::findOrFail($id); // Mengambil data berdasarkan ID
-            $filePath = storage_path('app/public/' . $dokumen->file_path); // Lokasi file
-        
-            if (file_exists($filePath)) {
-                return response()->file($filePath); // Kirim file ke browser
-            }
-        
-            abort(404); // Kalau file nggak ada, tampilkan 404
-        });
-        Route::put('/bak/{id}', [BakController::class, 'update'])->name('bak.update');
+    // Route to handle the ticket update
+    Route::resource('ticketsales', TicketsalesController::class);
 
-        
-        Route::get('/bak/{id}/download', [BakController::class, 'download'])->name('bak.download');
 
-        Route::resource('rekeningkoran', RekeningkoranController::class);
-        Route::get('/rekeningkoran/pdf/{id}', [RekeningkoranController::class, 'getPdf'])->name('rekeningkoran.pdf');
-        Route::get('/rekeningkoran/{id}/download', [RekeningkoranController::class, 'download'])->name('rekeningkoran.download');
-
-        // Route::post('/farebox/document/bak/store', [BakController::class, 'store'])->name('bak.store');
-        // Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
-    });
 });
 
 
-require __DIR__.'/auth.php';
+// document
+Route::prefix('document')->group(callback: function () {
+    Route::resource('bak', BakController::class);
+    Route::get('/bak/pdf/{id}', function ($id) {
+        $dokumen = Bak::findOrFail($id); // Mengambil data berdasarkan ID
+        $filePath = storage_path('app/public/' . $dokumen->file_path); // Lokasi file
+
+        if (file_exists($filePath)) {
+            return response()->file($filePath); // Kirim file ke browser
+        }
+
+        abort(404); // Kalau file nggak ada, tampilkan 404
+    });
+    Route::put('/bak/{id}', [BakController::class, 'update'])->name('bak.update');
+    Route::get('/bak/{id}/download', [BakController::class, 'download'])->name('bak.download');
+
+    Route::resource('rekeningkoran', RekeningkoranController::class);
+    Route::get('/rekeningkoran/pdf/{id}', [RekeningkoranController::class, 'getPdf'])->name('rekeningkoran.pdf');
+    Route::get('/rekeningkoran/{id}/download', [RekeningkoranController::class, 'download'])->name('rekeningkoran.download');
+
+    // Route::post('/document/bak/store', [BakController::class, 'store'])->name('bak.store');
+    // Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
+});
+
+require __DIR__ . '/auth.php';

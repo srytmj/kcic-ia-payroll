@@ -122,7 +122,7 @@
         files.forEach(file => formData.append('files[]', file));
 
         try {
-            const response = await fetch('/farebox/document/rekeningkoran', {
+            const response = await fetch('/document/rekeningkoran', {
                 method: 'POST',
                 body: formData,
                 headers: {

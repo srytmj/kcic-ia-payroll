@@ -28,7 +28,7 @@
     // Handle the click event to set the PDF source
     $('.view-pdf-button').click(function() {
         var id = $(this).data('id');
-        var pdfUrl = '/farebox/document/rekeningkoran/pdf/' + id; // URL to fetch the PDF
+        var pdfUrl = '/document/rekeningkoran/pdf/' + id; // URL to fetch the PDF
 
         // Set the iframe source to the PDF URL
         $('#pdfViewer').attr('src', pdfUrl);
