@@ -25,7 +25,7 @@
 
                 <ul class="nav pcoded-inner-navbar ">
                     <li class="nav-item pcoded-hasmenu">
-						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Master</span></a>
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Master</span></a>
 						<ul class="pcoded-submenu">
 							<li class="pcoded-hasmenu"><a>Data</a>
 								<ul class="pcoded-submenu">
@@ -43,6 +43,22 @@
 						</ul>
 
 					</li>
+
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Aksi</span></a>
+						<ul class="pcoded-submenu">
+							<li>
+                                <a href="{{ route('classification.index') }}">Klasifikasi Data</a>
+							</li>
+                            <li class="pcoded-hasmenu"><a>Rekapitulasi</a>
+								<ul class="pcoded-submenu">
+									<li><a href="{{ route('rekapitulasi.bak') }}">Bak</a></li>
+                                    <li><a href="{{ route('rekeningkoran.index') }}">Refund Rombongan</a></li>
+									{{-- <li><a href="{{ route('formrefund.index') }}">Form Refund</a></li> --}}
+								</ul>
+							</li>
+						</ul>
+                    </li>
                 </ul>
                 
             </div>

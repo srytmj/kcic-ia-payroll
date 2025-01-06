@@ -44,6 +44,8 @@
     <script src="{{ asset('assets/js/plugins/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/pages/data-api-custom.js') }}"></script>
     <script src="{{ asset('assets/js/menu-setting.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pages/data-select-custom.js') }}"></script>    
 
     <!-- select2 Js -->
     <script src="{{ asset('assets/js/plugins/select2.full.min.js') }}"></script>

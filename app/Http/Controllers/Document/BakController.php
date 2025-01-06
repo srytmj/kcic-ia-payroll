@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Document;
 
 use App\Models\Bak;
-use App\Http\Requests\StorebakRequest;
-use App\Http\Requests\UpdatebakRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;

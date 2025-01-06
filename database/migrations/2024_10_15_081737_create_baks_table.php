@@ -27,6 +27,13 @@ return new class extends Migration
             $table->text(column: 'keterangan')->nullable()->default(value: null);
             $table->timestamps();
         });
+
+        schema::create(table: 'dokumen_bak_detail', callback: function (Blueprint $table): void {
+            $table->id();
+            $table->foreignId(column: 'dokumen_bak_id')->constrained(table: 'dokumen_bak')->onDelete('cascade');
+            $table->date(column: 'tanggal_keberangkatan');
+            $table->timestamps();
+        });
     }
 
     /**

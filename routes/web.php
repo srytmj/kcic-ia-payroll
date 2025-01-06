@@ -59,4 +59,13 @@ Route::prefix('document')->group(callback: function () {
     // Route::delete('/delete-selected', [BakController::class, 'deleteSelected'])->name('delete.selected');
 });
 
+use App\Http\Controllers\ClassificationController;
+
+Route::get('/classification/create/{id}', [ClassificationController::class, 'create'])->name('classification.create');
+Route::resource('classification', ClassificationController::class);
+Route::post('/process-selected-data', [ClassificationController::class, 'processSelectedData'])->name('process.selected.data');
+Route::post('/update-ticket-sales', [ClassificationController::class, 'updateTicketSales']);
+
+use App\Http\Controllers\Rekapitulasi;
+Route::get('/rekapitulasi/bak', [Rekapitulasi::class, 'bak'])->name('rekapitulasi.bak');
 require __DIR__ . '/auth.php';
