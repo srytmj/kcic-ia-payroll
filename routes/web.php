@@ -68,4 +68,6 @@ Route::post('/update-ticket-sales', [ClassificationController::class, 'updateTic
 
 use App\Http\Controllers\Rekapitulasi;
 Route::get('/rekapitulasi/bak', [Rekapitulasi::class, 'bak'])->name('rekapitulasi.bak');
+Route::get('/export-csv', [Rekapitulasi::class, 'exportCsv'])->name('export.csv');
+
 require __DIR__ . '/auth.php';
