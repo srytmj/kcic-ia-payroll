@@ -6,7 +6,7 @@ $(document).ready(function() {
 });
 
 function floatchart() {
-    // [ amount-processed ] start
+    // [ premiumeconomy-class ] start
     $(function() {
         var options = {
             chart: {
@@ -61,11 +61,11 @@ function floatchart() {
                 }
             }
         };
-        var chart = new ApexCharts(document.querySelector("#amount-processed"), options);
+        var chart = new ApexCharts(document.querySelector("#premiumeconomy-class"), options);
         chart.render();
     });
-    // [ amount-processed ] end
-    // [ amount-spent ] start
+    // [ premiumeconomy-class ] end
+    // [ business-class ] start
     $(function() {
         var options = {
             chart: {
@@ -111,11 +111,11 @@ function floatchart() {
                 }
             }
         };
-        var chart = new ApexCharts(document.querySelector("#amount-spent"), options);
+        var chart = new ApexCharts(document.querySelector("#business-class"), options);
         chart.render();
     });
-    // [ amount-spent ] end
-    // [ profit-processed ] start
+    // [ business-class ] end
+    // [ first-class ] start
     $(function() {
         var options = {
             chart: {
@@ -170,10 +170,10 @@ function floatchart() {
                 }
             }
         };
-        var chart = new ApexCharts(document.querySelector("#profit-processed"), options);
+        var chart = new ApexCharts(document.querySelector("#first-class"), options);
         chart.render();
     });
-    // [ profit-processed ] end
+    // [ first-class ] end
     // [ sec-ecommerce-chart-line ] start
     $(function() {
         var options = {
@@ -3102,7 +3102,7 @@ function floatchart() {
             },
             series: [85.7, 77.56, 20.9, 10.9, 15.8, 86.7],
             colors: ["#4680ff", "#0e9e4a", "#00acc1", "#ffba57", "#ff5252", "#536dfe"],
-            labels: ["Facebook ads", "Amazon ads", "Youtube videos", "Google adsense", "Twitter ads", "News ads"],
+            labels: ["Premium Economy", "Bussiness", "First"],
             legend: {
                 show: true,
                 position: 'bottom',
