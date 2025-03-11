@@ -5,12 +5,16 @@ use App\Models\Bak;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+use App\Http\Controllers\Dashboard;
+Route::get('/dashboard', [Dashboard::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/penjualan/periode', [Dashboard::class, 'totalPenjualanPerPeriode']);
+Route::get('/penjualan/hari', [Dashboard::class, 'totalPenjualanPerHari']);
+Route::get('/penjualan/seat-class', [Dashboard::class, 'totalPenjualanPerSeatClass']);
+Route::get('/penjualan/stasiun', [Dashboard::class, 'countPenjualanPerStasiun']);
+Route::get('/test', action: [Dashboard::class, 'test'])->middleware(['auth', 'verified'])->name('test');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -68,6 +72,9 @@ Route::post('/update-ticket-sales', [ClassificationController::class, 'updateTic
 
 use App\Http\Controllers\Rekapitulasi;
 Route::get('/rekapitulasi/bak', [Rekapitulasi::class, 'bak'])->name('rekapitulasi.bak');
+Route::get('/rekapitulasi/ticketsales', [Rekapitulasi::class, 'ticketsales'])->name('rekapitulasi.ticketsales');
+Route::get('/rekapitulasi/refundrombongan', [Rekapitulasi::class, 'refundrombongan'])->name('rekapitulasi.refundrombongan');
 Route::get('/export-csv', [Rekapitulasi::class, 'exportCsv'])->name('export.csv');
+Route::get('/export-csv-ticketsales', [Rekapitulasi::class, 'exportCsvTicketsales'])->name('export.csv.ticketsales');
 
 require __DIR__ . '/auth.php';

@@ -45,7 +45,7 @@
                             <div class="card-body" style="padding: 0;">
                                 <h5 class="card-title" style="padding: 1rem;">Preview Document</h5>
                                 <object data="/storage/{{ $data->file_path }}" type="application/pdf" width="100%"
-                                    height="400px">
+                                    height="600px">
                                 </object>
                             </div>
                         </div>

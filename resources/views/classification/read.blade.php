@@ -11,12 +11,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">API DataTable</h5>
+                                <h5 class="m-b-10">Klasifikasi</h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#!">Data Table</a></li>
-                                <li class="breadcrumb-item"><a href="#!">API Initialization</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Klasifikasi</a></li>
                             </ul>
                         </div>
                     </div>
@@ -31,7 +30,7 @@
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Alternative Pagination</h5>
+                            <h5>Klasifikasi</h5>
                         </div>
                         <div class="card-body">
                             <div class="dt-responsive table-responsive">

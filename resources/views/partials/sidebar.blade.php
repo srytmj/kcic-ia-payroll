@@ -7,27 +7,28 @@
                     <div class="main-menu-header">
                         <img class="img-radius" src="{{asset("assets/images/user/avatar-2.jpg")}}" alt="User-Profile-Image">
                         <div class="user-details">
-                            <div id="more-details">UX Designer <i class="fa fa-caret-down"></i></div>
+                            <div id="more-details">Internal Audit</div>
                         </div>
-                    </div>
-                    <div class="collapse" id="nav-user-link">
-                        <ul class="list-inline">
-                            <li class="list-inline-item"><a href="user-profile.html" data-toggle="tooltip"
-                                    title="View Profile"><i class="feather icon-user"></i></a></li>
-                            <li class="list-inline-item"><a href="email_inbox.html"><i class="feather icon-mail"
-                                        data-toggle="tooltip" title="Messages"></i><small
-                                        class="badge badge-pill badge-primary">5</small></a></li>
-                            <li class="list-inline-item"><a href="auth-signin.html" data-toggle="tooltip" title="Logout"
-                                    class="text-danger"><i class="feather icon-power"></i></a></li>
-                        </ul>
                     </div>
                 </div>
 
                 <ul class="nav pcoded-inner-navbar ">
-                    <li class="nav-item pcoded-hasmenu">
-						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Master</span></a>
+
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link ">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-home"></i>
+                            </span>
+                            <span class="pcoded-mtext">
+                                Dashboard
+                            </span>
+                        </a>
+                    </li>
+
+                    {{-- <li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Data</span></a>
 						<ul class="pcoded-submenu">
-							<li class="pcoded-hasmenu"><a>Data</a>
+							<li class="pcoded-hasmenu"><a>Master</a>
 								<ul class="pcoded-submenu">
 									<li><a href="{{ route('ticketsales.index') }}">Ticket Sales</a></li>
 									<li><a href="layout-fixed.html">Refund</a></li>
@@ -37,11 +38,18 @@
 								<ul class="pcoded-submenu">
 									<li><a href="{{ route('bak.index') }}">Bak</a></li>
                                     <li><a href="{{ route('rekeningkoran.index') }}">Rekening Koran</a></li>
-									{{-- <li><a href="{{ route('formrefund.index') }}">Form Refund</a></li> --}}
+									<li><a href="{{ route('formrefund.index') }}">Form Refund</a></li>
 								</ul>
 							</li>
 						</ul>
+					</li> --}}
 
+                    <li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Master Data</span></a>
+						<ul class="pcoded-submenu">
+                            <li><a href="{{ route('ticketsales.index') }}">Ticket Sales</a></li>
+                            <li><a href="{{ route('bak.index') }}">Bak</a></li>
+						</ul>
 					</li>
 
                     <li class="nav-item pcoded-hasmenu">
@@ -53,8 +61,7 @@
                             <li class="pcoded-hasmenu"><a>Rekapitulasi</a>
 								<ul class="pcoded-submenu">
 									<li><a href="{{ route('rekapitulasi.bak') }}">Bak</a></li>
-                                    <li><a href="{{ route('rekeningkoran.index') }}">Refund Rombongan</a></li>
-									{{-- <li><a href="{{ route('formrefund.index') }}">Form Refund</a></li> --}}
+                                    <li><a href="{{ route('rekapitulasi.ticketsales') }}">Ticket Sales</a></li>
 								</ul>
 							</li>
 						</ul>

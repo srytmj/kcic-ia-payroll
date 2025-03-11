@@ -24,12 +24,12 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">API DataTable</h5>
+                                <h5 class="m-b-10">Dokumen BAK</h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#!">Data Table</a></li>
-                                <li class="breadcrumb-item"><a href="#!">API Initialization</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Dokumen</a></li>
+                                <li class="breadcrumb-item"><a href="#!">BAK</a></li>
                             </ul>
                         </div>
                     </div>

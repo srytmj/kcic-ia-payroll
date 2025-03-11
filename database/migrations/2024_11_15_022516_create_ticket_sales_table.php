@@ -16,9 +16,9 @@ return new class extends Migration
             $table->integer('seq_no');
             $table->string('periode');
             $table->string('passenger_name');
-            $table->integer('bak')->nullable();
             // $table->foreignId('bak')->constrained('dokumen_bak')->nullable()->default(null);
-            // $table->string('nik_passport_no');
+            $table->string('nik_passport_no');
+            $table->integer('bak')->nullable();
             $table->string('nationality');
             $table->string('order_no');
             $table->string('ticket_no');
@@ -35,7 +35,7 @@ return new class extends Migration
             // $table->string('cars_number');
             // $table->string('seat_number');
             // $table->string('origin_code');
-            // $table->date('purchase_date');
+            $table->date('purchase_date');
             // $table->time('purchase_time');
             $table->time('departure_time');
             $table->string('destination');
@@ -52,7 +52,7 @@ return new class extends Migration
             $table->integer('after_tax_price');
             // $table->string('ticketing_channel');
             $table->string('payment_method');
-            // $table->string('trade_no');
+            $table->string('trade_no')->nullable();
             $table->string('plat_trade_no')->nullable();
             // $table->string('payment_gateway')->nullable();
             // $table->string('b2b_partner')->nullable();

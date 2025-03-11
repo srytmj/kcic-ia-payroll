@@ -6,7 +6,7 @@
             <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
             <a href="#!" class="b-brand">
                 <!-- ========   change your logo hear   ============ -->
-                <img src="{{asset("assets/images/logo.png")}}" alt="" class="logo">
+                <img src="{{ asset('assets/images/logo_hui.png') }}" alt="" class="logo" style="height: 25px; width: auto;">
 
             </a>
             <a href="#!" class="mob-toggler">

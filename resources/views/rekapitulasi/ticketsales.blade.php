@@ -46,7 +46,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="GET" action="{{ route('export.csv') }}">
+                                        <form method="GET" action="{{ route('export.csv.ticketsales') }}">
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="start">Start From</label>
@@ -81,12 +81,9 @@
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Periode</th>
-                                                <th>No. Dokumen</th>
-                                                <th>Nama Pihak Kedua</th>
-                                                <th>Tanggal Dokumen</th>
-                                                <th>Bukti Transfer</th>
-                                                <th>Manifest</th>
-                                                <th>Keterangan</th>
+                                                <th>ROmbongan</th>
+                                                <th>Nama</th>
+                                                <th>NIK</th>
                                             </tr>
                                         </thead>
 
@@ -96,12 +93,9 @@
                                                     {{-- Columns start --}}
                                                     <td class="id">{{ $data->id }}</td>
                                                     <td class="periode">{{ $data->periode }}</td>
-                                                    <td class="status">{{ $data->no_dokumen }}</td>
-                                                    <td class="file_name">{{ $data->nama_pihak_kedua }}</td>
-                                                    <td class="status">{{ $data->tanggal_dokumen }}</td>
-                                                    <td class="status">{{ $data->bukti_transfer }}</td>
-                                                    <td class="status">{{ $data->manifest }}</td>
-                                                    <td class="status">{{ $data->keterangan }}</td>
+                                                    <td class="status">{{ $data->nama_pihak_kedua }}</td>
+                                                    <td class="file_name">{{ $data->passenger_name }}</td>
+                                                    <td class="status">{{ $data->nik_passport_no }}</td>
                                                     {{-- Columns end --}}
                                                 </tr>
                                             @endforeach
