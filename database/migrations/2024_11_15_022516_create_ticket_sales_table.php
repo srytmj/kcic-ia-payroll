@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_ticketsales', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_ticketsales');
             $table->integer('seq_no');
             $table->string('periode');
             $table->string('passenger_name');
@@ -29,19 +29,19 @@ return new class extends Migration
             // $table->string('shift_no');
             $table->string('operator_name');
             // $table->string('ticketing_time');
-            $table->date('departure_date');
+            $table->string('departure_date');
             // $table->string('train_no');
             $table->string('origin');
             // $table->string('cars_number');
             // $table->string('seat_number');
             // $table->string('origin_code');
-            $table->date('purchase_date');
+            $table->string('purchase_date');
             // $table->time('purchase_time');
-            $table->time('departure_time');
+            $table->string('departure_time');
             $table->string('destination');
             // $table->string('destination_code');
             $table->date('arrival_date');
-            $table->time('arrival_time');
+            $table->string('arrival_time');
             $table->string('seat_class');
             // $table->string('ticket_type');
             // $table->integer('original_ticket_price');

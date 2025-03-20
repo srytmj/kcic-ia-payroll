@@ -101,7 +101,7 @@ class BakController extends Controller
                 'status' => $file->status,
                 'nama_pihak_kedua' => $file->nama_pihak_kedua,
                 'no_dokumen' => $file->no_dokumen,
-                'total_nominal' => $file->total_nominal,
+                // 'total_nominal' => $file->total_nominal,
                 'tanggal_dokumen' => $file->tanggal_dokumen,
                 'bukti_transfer' => $file->bukti_transfer,
                 'manifest' => $file->manifest,
@@ -136,7 +136,7 @@ class BakController extends Controller
             'status' => 'required|string',
             'nama_pihak_kedua' => 'nullable|string|max:255',
             'no_dokumen' => 'nullable|string|max:255',
-            'total_nominal' => 'nullable|integer',
+            // 'total_nominal' => 'nullable|integer',
             'tanggal_dokumen' => 'nullable|date',
             'bukti_transfer' => 'nullable|in:0,1',
             'manifest' => 'nullable|in:0,1',
@@ -188,7 +188,7 @@ class BakController extends Controller
         $file->status = $request->status;
         $file->nama_pihak_kedua = $request->nama_pihak_kedua;
         $file->no_dokumen = $request->no_dokumen;
-        $file->total_nominal = $request->total_nominal;
+        // $file->total_nominal = $request->total_nominal;
         $file->tanggal_dokumen = $request->tanggal_dokumen;
         $file->bukti_transfer = $request->bukti_transfer;
         $file->manifest = $request->manifest;

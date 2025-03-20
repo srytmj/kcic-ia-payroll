@@ -41,10 +41,10 @@
                         <input type="text" class="form-control" id="no_dokumen" name="no_dokumen">
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="total_nominal">Total Nominal:</label>
                         <input type="number" class="form-control" id="total_nominal" name="total_nominal">
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="tanggal_dokumen">Tanggal Dokumen:</label>
@@ -101,8 +101,8 @@
                             .nama_pihak_kedua); // Set nama pihak kedua
                         $('input[name="no_dokumen"]').val(data
                             .no_dokumen); // Set no dokumen
-                        $('input[name="total_nominal"]').val(data
-                            .total_nominal); // Set total nominal
+                        // $('input[name="total_nominal"]').val(data
+                        //     .total_nominal); // Set total nominal
                         $('input[name="tanggal_dokumen"]').val(data
                             .tanggal_dokumen); // Set tanggal dokumen
                         $('textarea[name="keterangan"]').val(data

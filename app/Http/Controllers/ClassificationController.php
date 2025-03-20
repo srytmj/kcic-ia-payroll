@@ -18,7 +18,7 @@ class ClassificationController extends Controller
      */
     public function index()
     {
-        $datas = Bak::all();
+        $datas = Bak::where('status', 'pending')->get();
 
         return view('classification.read', [
             'datas' => $datas,
@@ -34,7 +34,8 @@ class ClassificationController extends Controller
         $data = Bak::find($id);
 
         // Ambil tanggal keberangkatan dari Bakdetail yang terkait
-        $dates = Bakdetail::where('dokumen_bak_id', $id)->get();
+        $dates = Bakdetail::where('dokumen_bak_id', $id)
+        ->get();
 
         if (!$data) {
             return response()->json(['message' => 'Data not found'], 404); // Jika data tidak ditemukan
@@ -96,6 +97,7 @@ class ClassificationController extends Controller
         $dokumenBak->manifest = $request->manifest;
         $dokumenBak->bukti_transfer = $request->bukti_transfer;
         $dokumenBak->keterangan = $request->keterangan;
+        $dokumenBak->status = 'done'; // Set status ke 'done'
 
         // Simpan perubahan di dokumen_bak
         $dokumenBak->save();

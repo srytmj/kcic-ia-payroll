@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string(column: 'status')->default(value: 'pending');
             $table->string(column: 'nama_pihak_kedua')->nullable()->default(value: null);
             $table->string(column: 'no_dokumen')->nullable()->default(value: null);
-            $table->integer(column: 'total_nominal')->nullable()->default(value: null);
+            // $table->integer(column: 'total_nominal')->nullable()->default(value: null);
             $table->date(column: 'tanggal_dokumen')->nullable()->default(value: null);
             $table->enum(column: 'bukti_transfer', allowed: ['0', '1'])->default(value: '0');
             $table->enum(column: 'manifest', allowed: ['0', '1'])->default(value: '0');
