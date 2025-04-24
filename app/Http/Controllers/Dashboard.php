@@ -9,12 +9,10 @@ class Dashboard extends Controller
 {
     public function index()
     {
-        return view('dashboard', [
-            'penjualanPerPeriode' => $this->totalPenjualanPerPeriode()->original,
-            'penjualanPerHari' => $this->totalPenjualanPerHari()->original,
-            'penjualanPerSeatClass' => $this->totalPenjualanPerSeatClass()->original,
-            'penjualanPerStasiun' => $this->countPenjualanPerStasiun()->original,
-        ]);
+        $ticketSalesCount = DB::table('data_ticketsales')->count();
+        $bakCount = DB::table('dokumen_bak')->count();
+        
+        return view('dashboard', compact('ticketSalesCount', 'bakCount'));
     }
     public function test()
     {
