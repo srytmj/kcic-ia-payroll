@@ -26,14 +26,9 @@ Proyek ini sudah dilengkapi dengan skrip otomatis untuk mempercepat proses insta
 
 1. Clone repositori ke direktori lokal:
 
-```
-
-```text
-File README-v2.md has been generated without emojis.
-
 ```bash
-   git clone [https://github.com/srytmj/project-budget-management.git](https://github.com/srytmj/project-budget-management.git)
-   cd project-budget-management
+git clone [https://github.com/srytmj/project-budget-management.git](https://github.com/srytmj/project-budget-management.git)
+cd project-budget-management
 
 ```
 
